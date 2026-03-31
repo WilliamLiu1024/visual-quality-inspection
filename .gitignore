@@ -3,5 +3,10 @@ __pycache__/
 *.pyc
 .pytest_cache/
 runs/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store
 data/uploads/*
 data/database.db
