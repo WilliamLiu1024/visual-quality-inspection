@@ -14,7 +14,7 @@ class BoundingBox(BaseModel):
 
 class DetectionResponse(BaseModel):
     record_id: int
-    image_url: str
+    image_url: str | None = None
     has_defect: bool
     predicted_label: str
     inference_task: str
@@ -35,7 +35,7 @@ class SampleDetectionResponse(DetectionResponse):
 
 class DetectionHistoryItem(BaseModel):
     id: int
-    image_url: str
+    image_url: str | None = None
     has_defect: bool
     predicted_label: str
     inference_task: str
@@ -49,10 +49,7 @@ class HealthResponse(BaseModel):
     status: str
     model_ready: bool
     detector_name: str
-
-
-class VideoStartRequest(BaseModel):
-    source: str = r"D:\05Data\visual-quality-inspection\data\test"
+    source_dir: str
 
 
 class VideoStatusResponse(BaseModel):

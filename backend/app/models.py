@@ -1,4 +1,4 @@
-﻿from datetime import datetime
+﻿from datetime import datetime, timezone
 
 from sqlalchemy import Boolean, DateTime, Float, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
@@ -16,4 +16,4 @@ class DetectionRecord(Base):
     top_confidence: Mapped[float] = mapped_column(Float, nullable=False)
     defect_count: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     boxes_json: Mapped[str] = mapped_column(Text, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).astimezone())

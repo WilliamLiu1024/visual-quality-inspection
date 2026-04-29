@@ -10,7 +10,8 @@ def create_detection_record(db: Session, image_path: str, image_name: str, predi
     label = prediction.get("label", "normal")
     confidence = float(prediction.get("confidence", 0.0))
     has_defect = label == "defect"
-    defect_count = len([item for item in boxes if item["label"] == "defect"])
+    # 检测模型：按 boxes 计数；分类模型无 boxes，异常图计 1，正常图计 0
+    defect_count = len([b for b in boxes if b["label"] == "defect"]) if boxes else (1 if has_defect else 0)
 
     record = DetectionRecord(
         image_name=image_name,

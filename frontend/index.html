@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
         <div>
           <p class="eyebrow">Steel Vision Inspection</p>
           <h1>钢板视觉缺陷检测</h1>
-          <p class="subtext">支持测试集图片识别与实时视频流识别，前端展示正常/异常、异常框和置信度。</p>
+          <p class="subtext">从指定文件夹读取图片或视频，实时检测并展示正常/异常结果。</p>
         </div>
         <div class="health" id="healthStatus">模型状态检查中...</div>
       </header>
@@ -20,27 +20,35 @@
       <main class="layout">
         <section class="panel">
           <div class="panel-head">
-            <h2>测试集图片识别</h2>
+            <h2>实时检测</h2>
             <div class="status-pill" id="liveState">未启动</div>
           </div>
 
-          <div class="source-bar">
-            <select id="sampleImageSelect"></select>
-            <button id="runSampleBtn">识别测试图</button>
-          </div>
-
           <div class="camera-stage">
-            <img id="streamView" alt="识别结果展示" />
+            <img id="streamView" alt="检测画面" />
           </div>
 
           <div class="source-bar">
-            <input id="sourceInput" type="text" value="D:\05Data\visual-quality-inspection\data\test" placeholder="输入 data/test、摄像头索引或 RTSP 地址" />
-            <button id="startStreamBtn">启动视频流</button>
+            <span class="source-label">读取目录：</span>
+            <span id="sourceDirDisplay" class="source-path">加载中...</span>
+          </div>
+
+          <div class="source-bar">
+            <button id="startStreamBtn">启动检测</button>
             <button id="stopStreamBtn" class="ghost">停止</button>
           </div>
 
+          <div class="source-bar settings-bar">
+            <span class="source-label">模糊过滤：</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="blurFilterToggle" checked />
+              <span class="toggle-slider"></span>
+            </label>
+            <span id="blurFilterLabel" class="toggle-label">已启用</span>
+          </div>
+
           <div class="actions">
-            <span id="detectStatus">等待选择测试图或启动视频流</span>
+            <span id="detectStatus">点击"启动检测"开始</span>
             <button id="refreshBtn" class="ghost">刷新历史</button>
           </div>
 
@@ -61,7 +69,6 @@
       </main>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js?v=4"></script>
   </body>
 </html>
-
